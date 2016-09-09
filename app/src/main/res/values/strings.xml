@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">GitKT</string>
+    <string name="action_settings">Settings</string>
+    <string name="avatar_desc">Repo avatar</string>
+    <string name="star">Star image</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
