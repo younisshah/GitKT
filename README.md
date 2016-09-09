@@ -1,6 +1,8 @@
 # GitKT
 Github Trending Repos in Kotlin
 
+[![kotlin.png](https://s5.postimg.org/88qz3fwg7/kotlin.png)](https://postimg.org/image/b2u4gvymb/)
+
 ## **This is a work in progress** :construction_worker:
 
 
