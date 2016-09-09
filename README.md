@@ -9,7 +9,7 @@ Github Trending Repos in Kotlin
 # TODOs
 - [x] Configure Kotlin language for Android Studio
 - [x] Implement Delegator Adapter Pattern
-- [X] Write Picasso Kotlin Extension functions for __ImageView__
+- [X] Write Picasso Kotlin Extension functions for __ImageView__ and __ViewGroup__
 - [ ] Use RxJava to decouple UI thread with background tasks
 - [ ] Consume GitHub API using Retrofit 2.0 
 - [ ] Use Dagger 2 for Dependency Injection
