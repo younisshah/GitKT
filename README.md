@@ -13,5 +13,6 @@ Github Trending Repos in Kotlin
 - [X] Use RxJava to decouple UI thread with background tasks
 - [X] Consume GitHub API using Retrofit 2.0
 - [ ] Infinite Scroll
+- [ ] Improve UI
 - [ ] Use Dagger 2 for Dependency Injection
 - [ ] Write Mockito unit tests
