@@ -28,8 +28,6 @@ class TrendingDelegateAdapter : ViewTypeDelegateAdapter {
             full_name.text = repo.fullName
             description.text = repo.description
             url.text = repo.htmlURL
-            stars.text = repo.stargazersCount
-            language.text = repo.language
         }
     }
 }

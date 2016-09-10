@@ -11,6 +11,7 @@ Github Trending Repos in Kotlin
 - [x] Implement Delegator Adapter Pattern
 - [X] Write Picasso Kotlin Extension functions for __ImageView__ and __ViewGroup__
 - [X] Use RxJava to decouple UI thread with background tasks
-- [ ] Consume GitHub API using Retrofit 2.0 
+- [X] Consume GitHub API using Retrofit 2.0
+- [ ] Infinite Scroll
 - [ ] Use Dagger 2 for Dependency Injection
 - [ ] Write Mockito unit tests

@@ -13,9 +13,7 @@ data class Repository(
         val avatarURL: String,
         val htmlURL: String,
         val fullName: String,
-        val description: String,
-        val stargazersCount: String,
-        val language: String
+        val description: String
 ) : ViewType {
     override fun getViewType() = AdapterConstants.REPO
 }

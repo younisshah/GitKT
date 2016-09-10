@@ -1,6 +1,7 @@
 package kt.app.gitkt.adapter
 
 import kt.app.gitkt.Repository
+import kt.app.gitkt.api.GitAPIKTClient
 import rx.Observable
 
 /**
@@ -8,24 +9,31 @@ import rx.Observable
  *
  * TrendingRepositoriesManager - Responsible for obtaining the Git repos
  */
-class TrendingRepositoriesManager {
+class TrendingRepositoriesManager(val gitAPI : GitAPIKTClient = GitAPIKTClient()) {
 
     fun getTrendingRepositories() : Observable<List<Repository>> {
         return Observable.create {
             subscriber ->
                 val repositories = mutableListOf<Repository>()
-                for (i in 1..10) {
-                    repositories.add(Repository(
-                            "http://lorempixel.com/200/200/technics/$i",
-                            "https://youtu.be",
-                            "User $i",
-                            "This is description # $i",
-                            "$i",
-                            "Kotlin"
-                ))
-            }
-            subscriber.onNext(repositories)
-            //subscriber.onCompleted()
+                val call = gitAPI.getTrending("1")
+                val response = call.execute()
+
+                if(response.isSuccessful) {
+                    response.body().forEach {
+                        val _r = Repository(
+                                it.owner.avatar_url,
+                                it.html_url,
+                                it.full_name,
+                                it.description
+                        )
+
+                        repositories.add(_r)
+                    }
+                    subscriber.onNext(repositories)
+                    subscriber.onCompleted()
+                } else {
+                    subscriber.onError(Throwable(response.message()))
+                }
         }
     }
 }

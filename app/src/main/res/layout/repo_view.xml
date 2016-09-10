@@ -43,37 +43,4 @@
         android:layout_toEndOf="@+id/avatar_img"
         android:id="@+id/url"/>
 
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="12sp"
-        android:textStyle="italic"
-        android:id="@+id/language"
-        android:padding="2dp"
-        android:layout_below="@+id/description"
-        android:layout_toRightOf="@+id/full_name"
-        android:layout_toEndOf="@+id/full_name" />
-    
-    <ImageView
-        android:layout_width="15dp"
-        android:layout_height="15dp"
-        android:padding="2dp"
-        android:contentDescription="@string/star"
-        android:layout_below="@+id/description"
-        android:layout_toRightOf="@+id/language"
-        android:layout_toEndOf="@+id/language"
-        android:src="@android:drawable/btn_star_big_on"
-        android:id="@+id/imageView" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textStyle="bold"
-        android:textSize="12sp"
-        android:padding="2dp"
-        android:id="@+id/stars"
-        android:layout_below="@+id/description"
-        android:layout_toRightOf="@+id/imageView"
-        android:layout_toEndOf="@+id/imageView" />
-
 </RelativeLayout>
