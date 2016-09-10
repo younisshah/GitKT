@@ -2,6 +2,7 @@ package kt.app.gitkt
 
 
 import android.os.Bundle
+import android.support.design.widget.Snackbar
 import android.support.v4.app.Fragment
 import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
@@ -9,7 +10,10 @@ import android.view.View
 import android.view.ViewGroup
 import kotlinx.android.synthetic.main.fragment_trending.*
 import kt.app.gitkt.adapter.TrendingRepositoriesAdapter
+import kt.app.gitkt.adapter.TrendingRepositoriesManager
 import kt.app.gitkt.commons.inflate
+import rx.android.schedulers.AndroidSchedulers
+import rx.schedulers.Schedulers
 
 
 /**
@@ -19,18 +23,7 @@ import kt.app.gitkt.commons.inflate
  */
 class TrendingFragment : Fragment() {
 
-   /* private val trendingList by lazy {
-        *//**
-         * trending_list is actually a view property - the ID of RecyclerView.
-         * In Kotlin, it's a synthetic property
-         * defined in fragment_trending.xml
-         * Using Kotlin android extensions, we don't have to use 'findViewByID()' anymore
-         * Just use the view ID and yuo are done!! :)
-         *//*
-        trending_list
-        trending_list.setHasFixedSize(true)
-        trending_list.layoutManager = LinearLayoutManager(context)
-    }*/
+    private val trendingRepositoriesManager by lazy { TrendingRepositoriesManager() }
 
     override fun onCreateView(inflater: LayoutInflater?, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         /**
@@ -41,24 +34,32 @@ class TrendingFragment : Fragment() {
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
+
         super.onActivityCreated(savedInstanceState)
 
         trending_list.setHasFixedSize(true)
         trending_list.layoutManager = LinearLayoutManager(context)
-        trending_list.adapter = TrendingRepositoriesAdapter()
 
-        val repositories = mutableListOf<Repository>()
-        for (i in 1..10) {
-            repositories.add(Repository(
-                    "http://lorempixel.com/200/200/technics/$i",
-                    "https://youtu.be",
-                    "User $i",
-                    "This is description # $i",
-                    "$i",
-                    "Kotlin"
-            ))
+        if(trending_list.adapter == null) {
+            trending_list.adapter = TrendingRepositoriesAdapter()
         }
-        println(repositories)
-        (trending_list.adapter as TrendingRepositoriesAdapter).addMockRepos(repositories)
+
+        getRepositories()
+    }
+
+    private fun getRepositories() {
+        /*val observable =*/ trendingRepositoriesManager
+                                .getTrendingRepositories()
+                                .subscribeOn(Schedulers.io())
+                                .observeOn(AndroidSchedulers.mainThread())
+                                .subscribe(
+                                    {
+                                        _repositories -> (trending_list.adapter as TrendingRepositoriesAdapter).addRepos(_repositories)
+                                    },
+                                    {
+                                        e -> Snackbar.make(trending_list, e.message ?: "", Snackbar.LENGTH_LONG).show()
+                                    }
+                                )
+
     }
 }

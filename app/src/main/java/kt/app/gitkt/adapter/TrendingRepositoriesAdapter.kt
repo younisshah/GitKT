@@ -42,7 +42,7 @@ class TrendingRepositoriesAdapter : RecyclerView.Adapter<RecyclerView.ViewHolder
         return repositories.size
     }
 
-    fun addMockRepos(_repositories: List<Repository>) {
+    fun addRepos(_repositories: List<Repository>) {
         val initPosition = repositories.size - 1
         repositories.removeAt(initPosition)
         notifyItemRemoved(initPosition)
